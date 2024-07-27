@@ -2,25 +2,18 @@ version: '3.8'
 services:
   mongodb:
     image: mongo:latest
-    container_name: mongodb
+    container_name: mongodb 
     ports:
       - "27017:27017"
     environment:
+      DB_URI: "mongodb://mongodb:27017"
+      DB_NAME: "test"
+      DB_COLLECTION_NAME: "todolist"
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     volumes:
       - mongo-data:/data/db
 
-  app:
-    build: .
-    container_name: go_app
-    ports:
-      - "8080:8080"
-    environment:
-      DB_URI: "mongodb://mongodb:27017"
-      DB_NAME: "test"
-      DB_COLLECTION_NAME: "todolist"
-    depends_on:
-      - mongodb
+  
 volumes:
   mongo-data:

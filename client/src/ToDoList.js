@@ -26,6 +26,10 @@ class ToDoList extends Component {
             console.log(err);
         });
     }
+
+    onChange = e => {
+        this.setState({[e.target.name]: e.target.value});
+    }
     render() {
         return (
             <div>
