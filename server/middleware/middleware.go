@@ -32,7 +32,7 @@ func loadTheEnv() {
 }
 
 func createDBInstance() {
-	connectionString := os.Getenv("DB_URI")
+	connectionString := os.Getenv("mongodb://localhost:27017")
 	fmt.Print(connectionString)
 	dbName := os.Getenv("DB_NAME")
 	collectionName := os.Getenv("DB_COLLECTION_NAME")
