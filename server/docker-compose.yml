@@ -8,11 +8,10 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-      DB_URI: "mongodb://root:example@mongodb:27017"
-      DB_NAME: "test"
-      DB_COLLECTION_NAME: "todolist"
     volumes:
       - mongo-data:/data/db
+
 volumes:
   mongo-data:
+
 

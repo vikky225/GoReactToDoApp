@@ -21,7 +21,7 @@ import (
 var collection *mongo.Collection
 
 func init() {
-	//loadTheEnv()
+	loadTheEnv()
 	createDBInstance()
 }
 func loadTheEnv() {
@@ -29,16 +29,24 @@ func loadTheEnv() {
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+	fmt.Println("we got here")
 }
 
 func createDBInstance() {
-	connectionString := os.Getenv("mongodb://localhost:27017")
-	fmt.Print(connectionString)
+	connectionString := os.Getenv("DB_URI")
+	if connectionString == "" {
+		log.Fatal("DB_URI environment variable is not set")
+	}
+	fmt.Println("Connection String:", connectionString)
 	dbName := os.Getenv("DB_NAME")
+	fmt.Println("Database Name:", dbName)
 	collectionName := os.Getenv("DB_COLLECTION_NAME")
+	fmt.Println("Collection Name:", collectionName)
 
-	clientOptions := options.Client().ApplyURI(os.Getenv(connectionString))
+	clientOptions := options.Client().ApplyURI(connectionString)
+	fmt.Println("clientOptions:", clientOptions)
 	client, err := mongo.Connect(context.TODO(), clientOptions)
+	fmt.Println("client:", client)
 
 	if err != nil {
 		log.Fatal(err)
